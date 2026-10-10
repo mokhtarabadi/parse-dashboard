@@ -33,3 +33,8 @@ Details:
 [log_alpha]: https://github.com/parse-community/parse-dashboard/blob/alpha/changelogs/CHANGELOG_alpha.md
 [branch_release]: https://github.com/parse-community/parse-dashboard/tree/release
 [branch_alpha]: https://github.com/parse-community/parse-dashboard/tree/alpha
+
+## Internal
+
+- 2026-10-10: Adopted cognitive-lead structure (AGENTS.md, opencode.json, docs/conventions.md,
+  tasks/ Kanban lanes, src/ + Parse-Dashboard/ living docs). No behavior change.
