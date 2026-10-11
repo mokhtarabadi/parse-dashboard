@@ -38,3 +38,4 @@ Details:
 
 - 2026-10-10: Adopted cognitive-lead structure (AGENTS.md, opencode.json, docs/conventions.md,
   tasks/ Kanban lanes, src/ + Parse-Dashboard/ living docs). No behavior change.
+- 2026-10-11: Experiments control room completed (composer, editable target/start, validation warnings, arm preview, compare states; pure src/lib bucket-preview helper). No behavior change outside the Experiments page.
