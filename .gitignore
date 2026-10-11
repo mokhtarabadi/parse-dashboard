@@ -27,3 +27,6 @@ test_logs
 
 # Kanban session history (Brain bridge transcripts, local only)
 tasks/.sessions/
+
+# Custom Context MCP reports
+context-reports/
