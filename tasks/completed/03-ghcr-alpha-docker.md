@@ -1,9 +1,9 @@
 # Task 03: Publish alpha Docker image to GHCR
 
-**File:** `tasks/qa/03-ghcr-alpha-docker.md`
+**File:** `tasks/completed/03-ghcr-alpha-docker.md`
 **Source:** manager
 **Type:** improvement
-**Status:** open
+**Status:** closed
 
 ## Goal
 
@@ -50,77 +50,10 @@ Build the dashboard image from the alpha branch and publish it to GitHub Contain
 ## Execution Log & Reasoning
 
 - 2026-10-11: task created per ad-hoc approval (CI workflow path). Environment verified: docker daemon OK, gh authenticated as mokhtarabadi, repo mokhtarabadi/parse-dashboard.
+- 2026-10-11: Manager ordered close (quote: ok close task), moving to completed.
 
 ## Factual Git Diff
 
 <!-- BEGIN_GIT_DIFF -->
-
-```diff
-diff --git a/.github/workflows/docker-alpha-ghcr.yml b/.github/workflows/docker-alpha-ghcr.yml
-new file mode 100644
-index 00000000..a51173e2
---- /dev/null
-+++ b/.github/workflows/docker-alpha-ghcr.yml
-@@ -0,0 +1,50 @@
-+# Builds and publishes the dashboard image from alpha to GHCR.
-+# No release branch involved; existing Docker Hub automation is untouched.
-+
-+name: docker-alpha-ghcr
-+on:
-+  push:
-+    branches: [alpha]
-+  workflow_dispatch:
-+env:
-+  REGISTRY: ghcr.io
-+  IMAGE_NAME: ${{ github.repository }}
-+jobs:
-+  build:
-+    runs-on: ubuntu-latest
-+    timeout-minutes: 60
-+    permissions:
-+      contents: read
-+      packages: write
-+    steps:
-+      - uses: actions/checkout@v4
-+      - name: Set up QEMU
-+        uses: docker/setup-qemu-action@v2
-+      - name: Set up Docker Buildx
-+        uses: docker/setup-buildx-action@v2
-+        with:
-+          install: true
-+      - name: Log in to GHCR
-+        uses: docker/login-action@v2
-+        with:
-+          registry: ${{ env.REGISTRY }}
-+          username: ${{ github.actor }}
-+          password: ${{ secrets.GITHUB_TOKEN }}
-+      - name: Extract Docker metadata
-+        id: meta
-+        uses: docker/metadata-action@v4
-+        with:
-+          images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
-+          tags: |
-+            type=raw,value=alpha
-+            type=sha,prefix=alpha-
-+      - name: Build and push Docker image
-+        uses: docker/build-push-action@v3
-+        with:
-+          context: .
-+          platforms: linux/amd64,linux/arm64/v8
-+          cache-from: type=gha
-+          cache-to: type=gha,mode=max
-+          push: true
-+          tags: ${{ steps.meta.outputs.tags }}
-+          labels: ${{ steps.meta.outputs.labels }}
-diff --git a/CHANGELOG.md b/CHANGELOG.md
-index 7f185381..8e7567e8 100644
---- a/CHANGELOG.md
-+++ b/CHANGELOG.md
-@@ -39,3 +39,4 @@ Details:
- - 2026-10-10: Adopted cognitive-lead structure (AGENTS.md, opencode.json, docs/conventions.md,
-   tasks/ Kanban lanes, src/ + Parse-Dashboard/ living docs). No behavior change.
- - 2026-10-11: Experiments control room completed (composer, editable target/start, validation warnings, arm preview, compare states; pure src/lib bucket-preview helper). No behavior change outside the Experiments page.
-+- 2026-10-11: Alpha Docker publishing to GHCR added (docker-alpha-ghcr workflow, no release involvement).
-```
-
+**Factual Git Diff:** Stored in Commit Hash: `5405b45ead99682ebf260bd093cac965ec880a63`
 <!-- END_GIT_DIFF -->
