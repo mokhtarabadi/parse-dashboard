@@ -24,3 +24,6 @@ test_logs
 
 # Docs
 /docs/
+
+# Kanban session history (Brain bridge transcripts, local only)
+tasks/.sessions/
